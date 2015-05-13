@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>validate-bootstrap.jquery Basic Test</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+        <h1>Hello, world!</h1>
+    </div>
+    <!-- don't forget novalidate to stop browser form validation -->
+    <form class="form" novalidate>
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-4 form-group'>
+                <label for="name">First Name:</label>
+                <input id="fname" class="form-control" type="text" required>
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for="name">Last Name:</label>
+                <input id="lname" class="form-control" type="text">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for="name">Email:</label>
+                <input id="email" class="form-control" type="text" required data-min-length="3" data-error-msg="Required. Minimum length 3 characters.">
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-6 form-group'>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="option1" value="" required data-error-msg="This one is required. The other isn't.">
+                        Option one (required)
+                    </label>
+                </div>
+                <div class="checkbox disabled">
+                    <label>
+                        <input type="checkbox" name="option1" value="">
+                        Option two
+                    </label>
+                </div>
+            </div>
+            <div class='col-sm-6 form-group'>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                        Option one (optional)
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                        Option two
+                    </label>
+                </div>
+                <div class="radio disabled">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                        Option three
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="../validate-bootstrap.jquery.js"></script>
+    <script>
+    $(function() {
+        $('form').validator();
+
+        $('form').submit(function(e) {
+            e.preventDefault();
+
+            if ($('form').validate() < 1) {
+                alert('valid form!');
+            }
+        })
+    })
+    </script>
+  </body>
+</html>
