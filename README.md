@@ -79,6 +79,8 @@ $('form').submit(function(e) {
 
 ##HTML Markup, Radio & Checkboxes
 
+*Form element must contain `novalidate` property.*
+
 To make HTML element required, add the required attribute:
 ```
 <input type="text" id="name" required>
