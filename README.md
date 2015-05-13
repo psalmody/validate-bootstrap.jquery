@@ -86,6 +86,7 @@ To make HTML element required, add the required attribute:
 Add `data-error-msg="custom error message"` or `data-min-length="3"` if desired.
 
 To make a radio or checkbox group required:
+
 1. Assign `name` attribute properly to all items in the group.
 2. Add `required` and `data-error-msg` attributes to first radio or checkbox in group.
 3. Message will be appended to parent form-group of first item.
