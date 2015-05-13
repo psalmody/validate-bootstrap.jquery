@@ -1,0 +1,23 @@
+{
+    "name":"validate-bootstrap",
+    "version":"0.8.1",
+    "title":"Bootstrap Form Generator",
+    "author":{
+        "name":"Michael A Smith",
+        "email":"psalmody@gmail.com",
+        "url":"https://github.com/psalmody/validate-bootstrap.jquery"
+    },
+    "licenses":[
+        {
+            "type":"MIT License",
+            "url":"https://github.com/psalmody/validate-bootstrap.jquery/blob/master/mit-license.md"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.11",
+        "bootstrap": ">=3.0"
+    },
+    "homepage":"https://github.com/psalmody/validate-bootstrap.jquery",
+    "docs":"https://github.com/psalmody/validate-bootstrap.jquery",
+    "bugs":"https://github.com/psalmody/validate-bootstrap.jquery/issues"
+}
