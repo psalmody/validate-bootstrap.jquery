@@ -1,4 +1,7 @@
-
+/**
+validate-bootstrap.jquery.js v 0.8.1
+https://github.com/psalmody/validate-bootstrap.jquery
+**/
 ;(function ( $ ) {
 
     $.fn.validator = function( options ) {
@@ -11,7 +14,7 @@
             dataLength:'min-length',
             dataErrorMsg:'error-msg',
             defaultMsg:'Required.',
-            errorHandlers: {},
+            validHandlers: {},
             validOnBlur: true,
             validOnKeyUp: false,
             validRadioCheckOnClick: true,
@@ -85,8 +88,8 @@
                     obj = typeof(obj) == 'undefined' ? formGroup : obj;
                     obj.removeClass('has-error');
                 }
-                if (settings.errorHandlers.hasOwnProperty(id)) {
-                    if (!settings.errorHandlers[id]($(this))) {
+                if (settings.validHandlers.hasOwnProperty(id)) {
+                    if (!settings.validHandlers[id]($(this))) {
                         makeErrors();
                         return false;
                     };
