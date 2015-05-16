@@ -27,7 +27,7 @@
             </div>
             <div class='col-sm-4 form-group'>
                 <label for="name">Email:</label>
-                <input id="email" class="form-control" type="text" required data-min-length="3" data-error-msg="Required. Minimum length 3 characters.">
+                <input id="email" class="form-control" type="email" required data-min-length="3" data-error-msg="Required. Must be valid e-mail address.">
             </div>
         </div>
         <div class="row">
@@ -79,12 +79,14 @@
     <script src="../validate-bootstrap.jquery.js"></script>
     <script>
     $(function() {
-        $('form').validator();
+        $('form').validator({
+            alert:'set at initiation'
+        });
 
         $('form').submit(function(e) {
             e.preventDefault();
 
-            if ($('form').validate() < 1) {
+            if ($('form').validator('check') < 1) {
                 alert('valid form!');
             }
         })
