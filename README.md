@@ -4,7 +4,7 @@
 
 jQuery plugin for Bootstrap to validate form
 
-v 0.8.1
+v 0.8.2
 
 written by Michael A Smith
 May 12 2015
@@ -70,8 +70,8 @@ $('form').validator();
 $('form').submit(function(e) {
     e.preventDefault();
 
-    var errors = $('form').validate();
-    if (errors < 1) {
+
+    if ($('form').validate('check') < 1) {
         ...process submit...
     }
 })
