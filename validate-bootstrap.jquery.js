@@ -9,6 +9,8 @@ https://github.com/psalmody/validate-bootstrap.jquery
         var validator = $.fn.validator;
         var options_obj = typeof (options) == 'string' ? {} : options;
 
+        this.attr('novalidate','novalidate');
+
         validator.settings = $.extend({},{
             validateSelecters:'input[type="text"],input[type="email"],select,textarea',
             radio: true,
@@ -101,6 +103,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 var helpBlockSelecter = '.'+settings.helpBlockClass.replace(' ','.');
                 var makeErrors = function(message) {
                     message = typeof(message) == 'undefined' ? msg : message;
+                    if (formGroup.find(helpBlockSelecter).length) formGroup.find(helpBlockSelecter).remove();
                     var helpBlock = $('<div class="'+settings.helpBlockClass+'"></div>').text(message);
                     formGroup.append(helpBlock);
                     formGroup.addClass('has-error');
@@ -144,6 +147,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                             makeErrors(msg);
                             return false;
                         }
+                        break;
                 }
 
                 var length = $(this).val() == null ? 0 : $(this).val().length;
