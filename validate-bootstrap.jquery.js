@@ -96,7 +96,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 var settings = validator.settings;
                 var id = $(this).prop('id');
                 var required = $(this).prop('required') ? true : false;
-                var min = typeof($(this).data(settings.dataLength)) != 'undefined' ? $(this).data(settings.dataLength) : 1;
+                var min = isNaN(parseInt($(this).prop('min'))) ? 1 : parseInt($(this).prop('min'));
                 var msg = typeof($(this).data(settings.dataErrorMsg)) != 'undefined' ? $(this).data(settings.dataErrorMsg) : settings.defaultMsg;
                 var formGroup = $(this).closest('.form-group');
                 var type = $(this).prop('type');

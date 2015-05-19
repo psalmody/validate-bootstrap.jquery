@@ -23,11 +23,11 @@
             </div>
             <div class='col-sm-4 form-group'>
                 <label for="name">Last Name:</label>
-                <input id="lname" class="form-control" type="text">
+                <input id="lname" class="form-control" min="3" required type="text" data-error-msg="Required. Minimum 3 characters.">
             </div>
             <div class='col-sm-4 form-group'>
                 <label for="name">Email:</label>
-                <input id="email" class="form-control" type="email" required data-min-length="3" data-error-msg="Required. Must be valid e-mail address.">
+                <input id="email" class="form-control" type="email" required data-error-msg="Required. Must be valid e-mail address.">
             </div>
         </div>
         <div class="row">

@@ -14,9 +14,9 @@ May 12 2015
 * jQuery (tested with 1.11.1)
 
 ##Features
-* Validates input :text, :checkbox, :radio, select and textarea
-* Follows HTML5 required attribute.
-* Defines error messages and minimum lengths through data- attributes
+* Validates input :text, :checkbox, :radio, :email (regex for format), select and textarea
+* Follows HTML5 required, min attribute.
+* Defines error messages through data- attributes
 * Uses native Bootstrap 3 styling for displaying errors messages
 
 ##Usage
@@ -85,7 +85,7 @@ To make HTML element required, add the required attribute:
 ```
 <input type="text" id="name" required>
 ```
-Add `data-error-msg="custom error message"` or `data-min-length="3"` if desired.
+Add `data-error-msg="custom error message"` or `min="3"` if desired.
 
 To make a radio or checkbox group required:
 
