@@ -30,6 +30,20 @@
                 <input id="email" class="form-control" type="email" required data-error-msg="Required. Must be valid e-mail address.">
             </div>
         </div>
+        <div class='row'>
+            <div class='col-sm-4 form-group'>
+                <label for='somenumber'>Number:</label>
+                <input id='somenumber' class='form-control' type='number' required data-error-msg="Required. Must be a number.">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for='customhandler'>Must follow custom handler:</label>
+                <input id='customhandler' class='form-control' type='text' required data-error-msg="Required. Must be 'JQUERY'. Case sensitive.">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for='notrequired'>Optional:</label>
+                <input id='notrequired' class='form-control' type='text'>
+            </div>
+        </div>
         <div class="row">
             <div class='col-sm-6 form-group'>
                 <div class="checkbox">
@@ -80,7 +94,14 @@
     <script>
     $(function() {
         $('form').validator({
-            alert:'set at initiation'
+            validHandlers: {
+                'customhandler':function(input) {
+                    //may do some formatting before validating
+                    $(input).val($(input).val().toUpperCase());
+                    //return true if valid
+                    return $(input).val() === 'JQUERY' ? true : false;
+                }
+            }
         });
 
         $('form').submit(function(e) {

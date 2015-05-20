@@ -25,40 +25,38 @@ Initiate the validator with
 ```
 $('form').validator({options});
 ```
-Once initiated, will allow `$.valid();` on form items and add `$.validate()` to form object.
+Once initiated, will add `$.fn.valid()` plugin for use on form controls.
 
 Default options:
 ```
 {
-    validateSelecters:'input:text,select,textarea',
-    radio: true,
+    alert: 'The form has some invalid fields. Please review.',
     checkbox: true,
-    formGroupErrorClass:'has-error',
-    helpBlockClass:'help-block with-errors',
-    dataLength:'min-length',
     dataErrorMsg:'error-msg',
     defaultMsg:'Required.',
+    formGroupErrorClass:'has-error',
+    helpBlockClass:'help-block with-errors',
+    radio: true,
+    validateSelecters:'input[type="text"],input[type="email"],input[type="number"],select,textarea',
     validHandlers: {},
     validOnBlur: true,
     validOnKeyUp: false,
-    validRadioCheckOnClick: true,
-    alert: 'The form has some invalid fields. Please review.'
+    validRadioCheckOnClick: true
 }
 ```
 
-* validateSelecters: jQuery-style selecters to validate
-* radio: validate radio buttons, true/false
+* alert: false or string. The message to alert() user when `.validator('check')`
 * checkbox: validate checkboxes, true/false
-* formGroupErrorClass: error class to assign to form-group
-* helpBlockClass: classes to assign to help-block
-* dataLength: data-* attribute to specify length. data-min-length by default
 * dataErrorMsg: data-* attribute to specify error message. data-error-msg by default
 * defaultMsg: default error message
+* formGroupErrorClass: error class to assign to form-group
+* helpBlockClass: classes to assign to help-block
+* radio: validate radio buttons, true/false
+* validateSelecters: jQuery selecters for inputs to validate (not radio, checkbox. use radio and checkbox options)
 * validHandlers: custom error handler functions. see section on errorHandlers below
 * validOnBlur: validate form-control onBlur, true/false
 * validOnKeyUp: validate form-control onKeyUp, true/false
 * validRadioCheckOnClick: validate radio / checkboxes when clicked
-* alert: false or string. The message to alert() user when $.validate()
 
 ##Basic Example
 
@@ -71,7 +69,7 @@ $('form').submit(function(e) {
     e.preventDefault();
 
 
-    if ($('form').validate('check') < 1) {
+    if ($('form').validator('check') < 1) {
         ...process submit...
     }
 })
@@ -96,14 +94,17 @@ To make a radio or checkbox group required:
 ##Custom Valid Handler
 
 Create a custom handler by adding it to the validHandlers object while initiating
-`$.validator()` Return `true` if valid.
+`.validator()` Return `true` if valid. Before returning true/false, formatting
+could be done on the input value.
 
 ```
-$.validator({
+$('form').validator({
     validHandlers: {
-        "form-control_id":function(input) {
-            return $(input).val() == 'Validator Bootstrap' ? true : false;
+        'customhandler':function(input) {
+            //may do some formatting before validating
+            $(input).val($(input).val().toUpperCase());
+            return $(input).val() === 'JQUERY' ? true : false;
         }
     }
-})
+});
 ```

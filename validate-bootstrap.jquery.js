@@ -12,19 +12,18 @@ https://github.com/psalmody/validate-bootstrap.jquery
         this.attr('novalidate','novalidate');
 
         validator.settings = $.extend({},{
-            validateSelecters:'input[type="text"],input[type="email"],select,textarea',
-            radio: true,
+            alert: 'The form has some invalid fields. Please review.',
             checkbox: true,
-            formGroupErrorClass:'has-error',
-            helpBlockClass:'help-block with-errors',
-            dataLength:'min-length',
             dataErrorMsg:'error-msg',
             defaultMsg:'Required.',
+            formGroupErrorClass:'has-error',
+            helpBlockClass:'help-block with-errors',
+            radio: true,
+            validateSelecters:'input[type="text"],input[type="email"],input[type="number"],select,textarea',
             validHandlers: {},
             validOnBlur: true,
             validOnKeyUp: false,
-            validRadioCheckOnClick: true,
-            alert: 'The form has some invalid fields. Please review.'
+            validRadioCheckOnClick: true
         },validator.settings,options_obj);
 
         var settings = validator.settings;
@@ -146,6 +145,15 @@ https://github.com/psalmody/validate-bootstrap.jquery
                         } else {
                             makeErrors(msg);
                             return false;
+                        }
+                        break;
+                    case "number":
+                        if (isNaN(parseFloat($(this).val()))) {
+                            makeErrors(msg);
+                            return false;
+                        } else {
+                            removeErrors();
+                            return true;
                         }
                         break;
                 }
