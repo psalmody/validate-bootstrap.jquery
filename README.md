@@ -14,7 +14,7 @@ May 12 2015
 * jQuery (tested with 1.11.1)
 
 ##Features
-* Validates input :text, :checkbox, :radio, :email (regex for format), select and textarea
+* Validates input[type=text,checkbox,radio,email (regex for format),number], select and textarea
 * Follows HTML5 required, min attribute.
 * Defines error messages through data- attributes
 * Uses native Bootstrap 3 styling for displaying errors messages
