@@ -1,6 +1,6 @@
-#validate-bootstrap.jquery
+# validate-bootstrap.jquery
 
-##Validation Plugin for Bootstrap 3 and jQuery
+## Validation Plugin for Bootstrap 3 and jQuery
 
 jQuery plugin for Bootstrap to validate form
 
@@ -9,17 +9,17 @@ v 0.9 (beta)
 written by Michael A Smith
 May 12 2015
 
-##Requires:
+## Requires:
 * [Bootstrap 3](http://getbootstrap.com/) (tested with 3.3.4)
 * [jQuery](https://jquery.com/) (tested with 1.11.1)
 
-##Features
+## Features
 * Validates input[type=text,checkbox,radio,email (regex for format),number], select and textarea
 * Follows HTML5 required, min attribute.
 * Defines error messages through data- attributes
 * Uses native Bootstrap 3 styling for displaying errors messages
 
-##Usage
+## Usage
 
 Initiate the validator with
 ```javascript
@@ -58,7 +58,7 @@ Default options:
 * validOnKeyUp: validate form-control onKeyUp, true/false
 * validRadioCheckOnClick: validate radio / checkboxes when clicked
 
-##Basic Example
+## Basic Example
 
 ```javascript
 //initiate validator
@@ -75,7 +75,7 @@ $('form').submit(function(e) {
 })
 ```
 
-##HTML Markup, Radio & Checkboxes
+## HTML Markup, Radio & Checkboxes
 
 *Form element must contain `novalidate` property.*
 
@@ -121,7 +121,7 @@ $("form").validator({
 });
 ```
 
-##Handling select2 and Bootstrap
+## Handling select2 and Bootstrap
 
 In my experience, [select2](https://select2.github.io/) and [Bootstrap](http://getbootstrap.com/) don't play super well together.
 Even with [select2-bootstrap-css](https://fk.github.io/select2-bootstrap-css/) there are still visibility issues.

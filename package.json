@@ -1,6 +1,6 @@
 {
   "name": "validate-bootstrap.jquery",
-  "version": "0.8.1",
+  "version": "0.9.1",
   "description": "Bootstrap form validation jQuery plugin.",
   "main": "validate-bootstrap.jquery.js",
   "scripts": {
