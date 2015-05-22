@@ -1,6 +1,6 @@
 {
   "name": "validate-bootstrap.jquery",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Bootstrap form validation jQuery plugin.",
   "main": "validate-bootstrap.jquery.js",
   "scripts": {
@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/psalmody/validate-bootstrap.jquery/issues"
   },
-  "homepage": "https://github.com/psalmody/validate-bootstrap.jquery"
+  "homepage": "https://github.com/psalmody/validate-bootstrap.jquery",
+  "dependencies": {
+      "Bootstrap": "http://getbootstrap.com",
+      "jQuery": "https://jquery.com"
+  }
 }

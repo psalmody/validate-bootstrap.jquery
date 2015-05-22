@@ -106,12 +106,12 @@ https://github.com/psalmody/validate-bootstrap.jquery
         $.extend($.fn,{
             valid: function() {
                 var settings = validator.settings;
-                var id = $(this).prop('id');
-                var required = $(this).prop('required') ? true : false;
-                var min = isNaN(parseInt($(this).prop('min'))) ? 1 : parseInt($(this).prop('min'));
-                var msg = typeof($(this).data(settings.dataErrorMsg)) != 'undefined' ? $(this).data(settings.dataErrorMsg) : settings.defaultMsg;
-                var formGroup = $(this).closest('.form-group');
-                var type = $(this).prop('type');
+                var id = this.prop('id');
+                var required = this.prop('required') ? true : false;
+                var min = isNaN(parseInt(this.prop('min'))) ? 1 : parseInt(this.prop('min'));
+                var msg = typeof(this.data(settings.dataErrorMsg)) != 'undefined' ? this.data(settings.dataErrorMsg) : settings.defaultMsg;
+                var formGroup = this.closest('.form-group');
+                var type = this.prop('type');
                 var helpBlockSelecter = '.'+settings.helpBlockClass.replace(' ','.');
                 // functions for error display
                 var makeErrors = function(message) {
@@ -127,7 +127,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 }
                 // check for custom valid handler
                 if (settings.validHandlers.hasOwnProperty(id)) {
-                    if (!settings.validHandlers[id]($(this))) {
+                    if (!settings.validHandlers[id](this)) {
                         makeErrors();
                         return false;
                     };
@@ -137,7 +137,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     // radio / checkbox is valid if at least one is checked
                     case "radio":
                     case "checkbox":
-                        var name = $(this).prop('name');
+                        var name = this.prop('name');
                         var group = self.find('input[name="'+name+'"]');
                         var first = self.find('input[name="'+name+'"]').eq(0);
                         if (first.prop('required')) {
@@ -157,7 +157,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     // check for valid e-mail formatting
                     case "email":
                         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        if(re.test($(this).val())) {
+                        if(re.test(this.val())) {
                             removeErrors();
                             return true;
                         } else {
@@ -165,19 +165,20 @@ https://github.com/psalmody/validate-bootstrap.jquery
                             return false;
                         }
                         break;
-                    // check if is a number
+                    // check if is a number - no commas allowed
                     case "number":
-                        if (isNaN(parseFloat($(this).val()))) {
-                            makeErrors(msg);
-                            return false;
-                        } else {
+                        var v = this.val();
+                        if (!isNaN(v) && isFinite(v) && v != '') {
                             removeErrors();
                             return true;
+                        } else {
+                            makeErrors(msg);
+                            return false;
                         }
                         break;
                     // default - check if long enough
                     default:
-                        var length = $(this).val() == null ? 0 : $(this).val().length;
+                        var length = this.val() == null ? 0 : this.val().length;
                         if (required && length < min) {
                             makeErrors();
                             return false;
