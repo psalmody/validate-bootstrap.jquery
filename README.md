@@ -10,8 +10,8 @@ written by Michael A Smith
 May 12 2015
 
 ##Requires:
-* Bootstrap 3 (tested with 3.3.4)
-* jQuery (tested with 1.11.1)
+* [Bootstrap 3](http://getbootstrap.com/) (tested with 3.3.4)
+* [jQuery](https://jquery.com/) (tested with 1.11.1)
 
 ##Features
 * Validates input[type=text,checkbox,radio,email (regex for format),number], select and textarea
@@ -107,4 +107,25 @@ $('form').validator({
         }
     }
 });
+```
+
+##Handling select2 and Bootstrap
+
+In my experience, [select2](https://select2.github.io/) and [Bootstrap](http://getbootstrap.com/) don't play super well together.
+Even with [select2-bootstrap-css](https://fk.github.io/select2-bootstrap-css/) there are still visibility issues.
+
+A couple of hacks are required to work select2 and bootstrap with this plugin.
+
+1. Make sure to include select2-boostrap-css in your project.
+2. Add the following styles:
+```
+.form-group.has-error .select2-selection {
+    border-color:#a94442;
+}
+```
+3. Add the following binding on select change event:
+```
+$('select').on('change',function() {
+    $(this).valid();
+})
 ```

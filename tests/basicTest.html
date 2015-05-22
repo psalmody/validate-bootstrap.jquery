@@ -45,7 +45,15 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-sm-6 form-group'>
+            <div class='col-sm-4 form-group'>
+                <label for='selectrequired'>Required option:</label>
+                <select id='selectrequired' class='form-control' required>
+                    <option selected disabled>Select one...</option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+            <div class='col-sm-4 form-group'>
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="option1" value="" required data-error-msg="This one is required. The other isn't.">
@@ -59,7 +67,7 @@
                     </label>
                 </div>
             </div>
-            <div class='col-sm-6 form-group'>
+            <div class='col-sm-4 form-group'>
                 <div class="radio">
                     <label>
                         <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
