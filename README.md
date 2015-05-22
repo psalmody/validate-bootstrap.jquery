@@ -4,7 +4,7 @@
 
 jQuery plugin for Bootstrap to validate form
 
-v 0.8.2
+v 0.9 (beta)
 
 written by Michael A Smith
 May 12 2015
