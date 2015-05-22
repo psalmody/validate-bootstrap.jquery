@@ -114,16 +114,16 @@ $('form').validator({
 In my experience, [select2](https://select2.github.io/) and [Bootstrap](http://getbootstrap.com/) don't play super well together.
 Even with [select2-bootstrap-css](https://fk.github.io/select2-bootstrap-css/) there are still visibility issues.
 
-A couple of hacks are required to work select2 and bootstrap with this plugin.
+A couple of hacks are required to make select2 and bootstrap work with this plugin.
 
-1. Make sure to include select2-boostrap-css in your project.
-2. Add the following styles:
+* Make sure to include select2-boostrap-css in your project.
+* Add the following styles:
 ```
 .form-group.has-error .select2-selection {
     border-color:#a94442;
 }
 ```
-3. Add the following binding on select change event:
+* Add the following binding on select change event:
 ```
 $('select').on('change',function() {
     $(this).valid();
