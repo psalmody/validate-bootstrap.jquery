@@ -129,7 +129,7 @@ Even with [select2-bootstrap-css](https://fk.github.io/select2-bootstrap-css/) t
 A couple of hacks are required to make select2 and bootstrap work with this plugin.
 
 * Make sure to include select2-boostrap-css in your project.
-* Add the following styles:
+* Add the following styles to highlight the select2 input with errors:
 ```css
 .form-group.has-error .select2-selection {
     border-color:#a94442;
