@@ -95,15 +95,25 @@ To make a radio or checkbox group required:
 
 ##Custom Valid Handler
 
-Create a custom handler by adding it to the validHandlers object while initiating
+Create a custom handler by adding a function object with the same key
+as the form-control id to the validHandlers object while initiating
 `.validator()` Return `true` if valid. Before returning true/false, formatting
 could be done on the input value.
+
+For example, with:
+
+```html
+<input id='customhandler' type='text' class='form-control'>
+```
+
+Create a custom handler which changes the value to upper-case text and
+checks to see if it equals "JQUERY".
 
 ```javascript
 $("form").validator({
     validHandlers: {
         "customhandler":function(input) {
-            //may do some formatting before validating
+            //do some formatting before validating
             $(input).val($(input).val().toUpperCase());
             return $(input).val() === "JQUERY" ? true : false;
         }
