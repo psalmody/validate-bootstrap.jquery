@@ -117,9 +117,9 @@
                 validHandlers: {
                     'customhandler':function(input) {
                         //may do some formatting before validating
-                        $(input).val($(input).val().toUpperCase());
+                        input.val(input.val().toUpperCase());
                         //return true if valid
-                        return $(input).val() === 'JQUERY' ? true : false;
+                        return input.val() === 'JQUERY' ? true : false;
                     }
                 }
             });

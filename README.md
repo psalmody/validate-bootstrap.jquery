@@ -22,13 +22,13 @@ May 12 2015
 ##Usage
 
 Initiate the validator with
-```
+```javascript
 $('form').validator({options});
 ```
 Once initiated, will add `$.fn.valid()` plugin for use on form controls.
 
 Default options:
-```
+```javascript
 {
     alert: 'The form has some invalid fields. Please review.',
     checkbox: true,
@@ -60,7 +60,7 @@ Default options:
 
 ##Basic Example
 
-```
+```javascript
 //initiate validator
 $('form').validator();
 
@@ -80,9 +80,11 @@ $('form').submit(function(e) {
 *Form element must contain `novalidate` property.*
 
 To make HTML element required, add the required attribute:
-```
+
+```html
 <input type="text" id="name" required>
 ```
+
 Add `data-error-msg="custom error message"` or `min="3"` if desired.
 
 To make a radio or checkbox group required:
@@ -97,13 +99,13 @@ Create a custom handler by adding it to the validHandlers object while initiatin
 `.validator()` Return `true` if valid. Before returning true/false, formatting
 could be done on the input value.
 
-```
-$('form').validator({
+```javascript
+$("form").validator({
     validHandlers: {
-        'customhandler':function(input) {
+        "customhandler":function(input) {
             //may do some formatting before validating
             $(input).val($(input).val().toUpperCase());
-            return $(input).val() === 'JQUERY' ? true : false;
+            return $(input).val() === "JQUERY" ? true : false;
         }
     }
 });
@@ -118,13 +120,13 @@ A couple of hacks are required to make select2 and bootstrap work with this plug
 
 * Make sure to include select2-boostrap-css in your project.
 * Add the following styles:
-```
+```css
 .form-group.has-error .select2-selection {
     border-color:#a94442;
 }
 ```
 * Add the following binding on select change event:
-```
+```javascript
 $('select').on('change',function() {
     $(this).valid();
 })
