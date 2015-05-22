@@ -11,6 +11,8 @@ https://github.com/psalmody/validate-bootstrap.jquery
 
         this.attr('novalidate','novalidate');
 
+        // extend defaults, existing settings (to save state)
+        //   and passed options. validateSelecters
         validator.settings = $.extend({},{
             alert: 'The form has some invalid fields. Please review.',
             checkbox: true,
@@ -28,12 +30,16 @@ https://github.com/psalmody/validate-bootstrap.jquery
 
         var settings = validator.settings;
 
+        //  define function to validate entire form
+        //  creates a collection of jQuery objects to run .valid() on
         var validate = function() {
 
             var errors = 0;
             var validobjs = $();
             var names = [];
 
+            // if checking checkbox and radio, only select first object in
+            // name group (only validate each group once)
             if (settings.checkbox) {
                 $('input:checkbox').each(function() {
                     if (names.indexOf($(this).prop('name'))) {
@@ -48,37 +54,44 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     }
                 })
             }
-
+            // add radio / checkbox items to collection
             $.each(names,function(i) {
                 validobjs = validobjs.add(self.find('input[name="'+names[i]+'"]').eq(0));
             })
-
+            // add everything else
             validobjs = validobjs.add(self.find(settings.validateSelecters));
-
+            // validate each obj, count errors
             $.each(validobjs,function() {
                 if ($(this).valid() != true) {
                     errors++;
                 }
             })
 
+            // alert if errors
             if (errors > 0 && settings.alert) {
                 alert(settings.alert);
             }
 
+            // return error count
             validator.lastcheckerrors = errors;
             return errors;
 
         }
 
+        // handling for running .validator() with string options
         if ( typeof(options) == 'string') {
             switch (options) {
+                // check = validate entire form
                 case 'check':
                     return validate();
                     break;
+                // errors = return last error check
                 case 'errors':
                     return validator.lastcheckerrors;
+                // options = return current settings
                 case 'options':
                     return validator.settings;
+                // otherwise, set an option with .validator('option-name','value')
                 default:
                     if (validator.settings.hasOwnProperty(options)) {
                         validator.settings[options] = value
@@ -89,7 +102,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
             }
         }
 
-
+        // define .valid() with existing settings
         $.extend($.fn,{
             valid: function() {
                 var settings = validator.settings;
@@ -100,6 +113,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 var formGroup = $(this).closest('.form-group');
                 var type = $(this).prop('type');
                 var helpBlockSelecter = '.'+settings.helpBlockClass.replace(' ','.');
+                // functions for error display
                 var makeErrors = function(message) {
                     message = typeof(message) == 'undefined' ? msg : message;
                     if (formGroup.find(helpBlockSelecter).length) formGroup.find(helpBlockSelecter).remove();
@@ -111,13 +125,16 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     obj = typeof(obj) == 'undefined' ? formGroup : obj;
                     obj.removeClass('has-error').find(helpBlockSelecter).remove();
                 }
+                // check for custom valid handler
                 if (settings.validHandlers.hasOwnProperty(id)) {
                     if (!settings.validHandlers[id]($(this))) {
                         makeErrors();
                         return false;
                     };
                 }
+                // validate by type
                 switch (type) {
+                    // radio / checkbox is valid if at least one is checked
                     case "radio":
                     case "checkbox":
                         var name = $(this).prop('name');
@@ -137,6 +154,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                             return true;
                         }
                         break;
+                    // check for valid e-mail formatting
                     case "email":
                         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                         if(re.test($(this).val())) {
@@ -147,6 +165,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                             return false;
                         }
                         break;
+                    // check if is a number
                     case "number":
                         if (isNaN(parseFloat($(this).val()))) {
                             makeErrors(msg);
@@ -156,31 +175,36 @@ https://github.com/psalmody/validate-bootstrap.jquery
                             return true;
                         }
                         break;
+                    // default - check if long enough
+                    default:
+                        var length = $(this).val() == null ? 0 : $(this).val().length;
+                        if (required && length < min) {
+                            makeErrors();
+                            return false;
+                        }
                 }
 
-                var length = $(this).val() == null ? 0 : $(this).val().length;
-                if (required && length < min) {
-                    makeErrors();
-                    return false;
-                }
-
+                // remove errors if no error created above
                 removeErrors();
                 return true;
             },
         });
 
+        // bind .valid() to blur event on form-control
         if (validator.settings.validOnBlur) {
             self.on('blur',validator.settings.validateSelecters,function() {
                 $(this).valid();
             })
         }
 
+        // bind .valid() on keyup on form-control
         if (validator.settings.validOnKeyUp) {
             self.on('keyup',validator.settings.validateSelecters,function() {
                 $(this).valid();
             })
         }
 
+        // bind .valid() on click for radio / checkboxes
         if (validator.settings.validRadioCheckOnClick) {
             $(self).on('click','input[type="checkbox"],input[type="radio"]',function() {
                 $(this).valid();
