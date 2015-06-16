@@ -28,6 +28,11 @@ $('form').validator({options});
 Once initiated, will add `$.fn.valid()` plugin for use on form controls.
 
 Default options:
+
+Due to some in-progress changes to the API, some settings may only be changed at 
+`.validator()` initiation. In other words, you cannot change any of the 
+`valid***` settings where changes will using the `.validator('option','value')` syntax.
+
 ```javascript
 {
     alert: 'The form has some invalid fields. Please review.',
