@@ -115,7 +115,7 @@
 
             $('form').validator({
                 validHandlers: {
-                    'customhandler':function(input) {
+                    '.customhandler':function(input) {
                         //may do some formatting before validating
                         input.val(input.val().toUpperCase());
                         //return true if valid
