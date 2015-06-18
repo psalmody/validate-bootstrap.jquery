@@ -1,20 +1,21 @@
 /**
-validate-bootstrap.jquery.js v 0.9
+validate-bootstrap.jquery.js v 0.10.0
 https://github.com/psalmody/validate-bootstrap.jquery
 **/
 ;(function ( $ ) {
 
-    $.fn.validator = function( options, value ) {
+    $.fn.validator = function( options ) {
         var $self = this;
         var validator = $.fn.validator;
         //var options_obj = typeof (options) == 'string' ? {} : options;
         var settings = validator.settings;
         
         validator._init = function( options ) {
+            //stop Chrome and other HTML5 compliant browsers from doing their own validation
             $self.attr('novalidate','novalidate');
 
             // extend defaults, existing settings (to save state)
-            //   and passed options. validateSelecters
+            //   and passed options. 
             validator.settings = $.extend({},{
                 alert: 'The form has some invalid fields. Please review.',
                 checkbox: true,
@@ -33,6 +34,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
             // define .valid() with existing settings
             $.extend($.fn,{
                 valid: function() {
+                    var self = this;
                     var settings = validator.settings;
                     var id = this.prop('id');
                     var required = this.prop('required') ? true : false;
@@ -46,7 +48,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     var makeErrors = function(message) {
                         message = typeof(message) == 'undefined' ? msg : message;
                         if (formGroup.find(helpBlockSelecter).length) formGroup.find(helpBlockSelecter).remove();
-                        var helpBlock = $('<div class="'+settings.helpBlockClass+'"></div>').text(message);
+                        var helpBlock = $('<div class="'+settings.helpBlockClass+'"></div>').html(message);
                         formGroup.append(helpBlock);
                         formGroup.addClass('has-error');
                     }
@@ -55,12 +57,14 @@ https://github.com/psalmody/validate-bootstrap.jquery
                         obj.removeClass('has-error').find(helpBlockSelecter).remove();
                     }
                     // check for custom valid handler
-                    if (settings.validHandlers.hasOwnProperty(id)) {
-                        if (!settings.validHandlers[id](this)) {
-                            makeErrors();
-                            return false;
-                        };
-                    }
+                    $.each(settings.validHandlers,function(k,v) {
+                        if (self.is(k)) {
+                            if (!v(self)) {
+                                makeErrors();
+                                return false;
+                            };
+                        }
+                    });
                     // validate by type
                     switch (type) {
                         // radio / checkbox is valid if at least one is checked
@@ -120,34 +124,14 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 },
             });
 
-            // bind .valid() to blur event on form-control
-            if (validator.settings.validOnBlur) {
-                $self.on('blur',validator.settings.validateSelecters,function() {
-                    $(this).valid();
-                })
-            }
-
-            // bind .valid() on keyup on form-control
-            if (validator.settings.validOnKeyUp) {
-                $self.on('keyup',validator.settings.validateSelecters,function() {
-                    $(this).valid();
-                })
-            }
-
-            // bind .valid() on click for radio / checkboxes
-            if (validator.settings.validRadioCheckOnClick) {
-                $self.on('click','input[type="checkbox"],input[type="radio"]',function() {
-                    $(this).valid();
-                });
-            }
+            
             
             return true;
         }
         
         //initiate first time, no need to define validate
         if (!validator.isinit) {
-            validator.isinit = validator._init();
-            return $self;
+            validator.isinit = validator._init( options );
         }
         
         
@@ -213,20 +197,33 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 // options = return current settings
                 case 'options':
                     return validator.settings;
-                // otherwise, set an option with .validator('option-name','value')
-                default:
-                    if (validator.settings.hasOwnProperty(options)) {
-                        validator.settings[options] = value
-                        return true;
-                    } else {
-                        return 'option not found';
-                    }
             }
+        }
+        
+        // bind .valid() to blur event on form-control
+        if (validator.settings.validOnBlur) {
+            $self.on('blur',validator.settings.validateSelecters,function() {
+                $(this).valid();
+            })
+        }
+
+        // bind .valid() on keyup on form-control
+        if (validator.settings.validOnKeyUp) {
+            $self.on('keyup',validator.settings.validateSelecters,function() {
+                $(this).valid();
+            })
+        }
+
+        // bind .valid() on click for radio / checkboxes
+        if (validator.settings.validRadioCheckOnClick) {
+            $self.on('click','input[type="checkbox"],input[type="radio"]',function() {
+                $(this).valid();
+            });
         }
 
         
 
-        return this;
+        return $self;
     }
 
 }( jQuery ));
