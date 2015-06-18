@@ -1,5 +1,5 @@
 /**
-validate-bootstrap.jquery.js v 0.10.1
+validate-bootstrap.jquery.js v 0.10.2
 https://github.com/psalmody/validate-bootstrap.jquery
 **/
 ;(function ( $ ) {
@@ -57,14 +57,18 @@ https://github.com/psalmody/validate-bootstrap.jquery
                         obj.removeClass('has-error').find(helpBlockSelecter).remove();
                     }
                     // check for custom valid handler
+                    var customvalid = true;
                     $.each(settings.validHandlers,function(k,v) {
                         if (self.is(k)) {
                             if (!v(self)) {
+                                customvalid = false;
                                 makeErrors();
                                 return false;
                             };
                         }
                     });
+                    //if customvalid handle returned false, exit as false, else continue
+                    if (!customvalid) { return false; };
                     // validate by type
                     switch (type) {
                         // radio / checkbox is valid if at least one is checked

@@ -1,6 +1,6 @@
 {
   "name": "validate-bootstrap.jquery",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Bootstrap form validation jQuery plugin.",
   "main": "validate-bootstrap.jquery.js",
   "scripts": {
@@ -18,7 +18,10 @@
     "ecosystem:jquery"
   ],
   "author": "Michael A Smith @psalmody",
-  "license": "MIT License",
+  "license": { 
+      "type": "MIT License",
+      "url": "https://github.com/psalmody/validate-bootstrap.jquery/blob/master/mit-license.md"
+  },
   "bugs": {
     "url": "https://github.com/psalmody/validate-bootstrap.jquery/issues"
   },
