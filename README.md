@@ -4,7 +4,7 @@
 
 jQuery plugin for Bootstrap to validate form
 
-v 0.9 (beta)
+v 0.10.1 (beta)
 
 written by Michael A Smith
 May 12 2015
@@ -14,7 +14,7 @@ May 12 2015
 * [jQuery](https://jquery.com/) (tested with 1.11.1)
 
 ## Features
-* Validates input[type=text,checkbox,radio,email (regex for format),number], select and textarea
+* Validates `input[type=text,checkbox,radio,email (regex for format),number]`, `select` and `textarea`
 * Follows HTML5 required, min attribute.
 * Defines error messages through data- attributes
 * Uses native Bootstrap 3 styling for displaying errors messages
@@ -93,6 +93,7 @@ To make a radio or checkbox group required:
 1. Assign `name` attribute properly to all items in the group.
 2. Add `required` and `data-error-msg` attributes to first radio or checkbox in group.
 3. Message will be appended to parent form-group of first item.
+
 
 ##Custom Valid Handler
 

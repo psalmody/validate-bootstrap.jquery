@@ -1,6 +1,6 @@
 {
     "name":"validate-bootstrap",
-    "version":"0.10.0",
+    "version":"0.10.1",
     "title":"Bootstrap Form Generator",
     "author":{
         "name":"Michael A Smith",
