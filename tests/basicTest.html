@@ -37,7 +37,7 @@
             </div>
             <div class='col-sm-4 form-group'>
                 <label for='customhandler'>Must follow custom handler:</label>
-                <input id='customhandler' class='form-control' type='text' required data-error-msg="Required. Must be 'JQUERY'. Case sensitive.">
+                <input id='customhandler' class='form-control customhandler' type='text' required data-error-msg="Required. Must be 'JQUERY'. Case sensitive, but we'll use the <code>validHandler</code> to format <code>.toUpperCase()</code>.">
             </div>
             <div class='col-sm-4 form-group'>
                 <label for='notrequired'>Optional:</label>
@@ -103,7 +103,7 @@
     $(function() {
         $('form').validator({
             validHandlers: {
-                'customhandler':function(input) {
+                '.customhandler':function(input) {
                     //may do some formatting before validating
                     input.val(input.val().toUpperCase());
                     //return true if valid
