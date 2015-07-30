@@ -1,7 +1,7 @@
 /**
-validate-bootstrap.jquery.js v 0.10.2
-https://github.com/psalmody/validate-bootstrap.jquery
-**/
+*  validate-bootstrap.jquery v 0.10.2
+*  https://github.com/psalmody/validate-bootstrap.jquery
+*/
 ;(function ( $ ) {
 
     $.fn.validator = function( options ) {
@@ -9,13 +9,13 @@ https://github.com/psalmody/validate-bootstrap.jquery
         var validator = $.fn.validator;
         //var options_obj = typeof (options) == 'string' ? {} : options;
         var settings = validator.settings;
-        
+
         validator._init = function( options ) {
             //stop Chrome and other HTML5 compliant browsers from doing their own validation
             $self.attr('novalidate','novalidate');
 
             // extend defaults, existing settings (to save state)
-            //   and passed options. 
+            //   and passed options.
             validator.settings = $.extend({},{
                 alert: 'The form has some invalid fields. Please review.',
                 checkbox: true,
@@ -30,7 +30,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 validOnKeyUp: false,
                 validRadioCheckOnClick: true
             },validator.settings,options);
-            
+
             // define .valid() with existing settings
             $.extend($.fn,{
                 valid: function() {
@@ -39,7 +39,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     var id = this.prop('id');
                     var required = this.prop('required') ? true : false;
                     var min = isNaN(parseInt(this.prop('min'))) ? 1 : parseInt(this.prop('min'));
-                    var msg = typeof(this.data(settings.dataErrorMsg)) != 'undefined' 
+                    var msg = typeof(this.data(settings.dataErrorMsg)) != 'undefined'
                                  ? this.data(settings.dataErrorMsg) : settings.defaultMsg;
                     var formGroup = this.closest('.form-group');
                     var type = this.prop('type');
@@ -128,17 +128,17 @@ https://github.com/psalmody/validate-bootstrap.jquery
                 },
             });
 
-            
-            
+
+
             return true;
         }
-        
+
         //initiate first time, no need to define validate
         if (!validator.isinit) {
             validator.isinit = validator._init( options );
         }
-        
-        
+
+
 
         //  define function to validate entire form
         //  creates a collection of jQuery objects to run .valid() on
@@ -203,7 +203,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
                     return validator.settings;
             }
         }
-        
+
         // bind .valid() to blur event on form-control
         if (validator.settings.validOnBlur) {
             $self.on('blur',validator.settings.validateSelecters,function() {
@@ -225,7 +225,7 @@ https://github.com/psalmody/validate-bootstrap.jquery
             });
         }
 
-        
+
 
         return $self;
     }
