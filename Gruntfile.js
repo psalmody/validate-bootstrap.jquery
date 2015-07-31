@@ -14,28 +14,26 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        usebanner: {
-          taskName: {
-            options: {
-              position: 'top',
-              banner: '/**\n*  validate-bootstrap.jquery v <%= pkg.version %>\n*  <%= pkg.homepage %>\n*/\n',
-              linebreak: true
-            },
-            files: {
-              src: ['validate-bootstrap.jquery.js']
-            }
+        concat: {
+          options: {
+            stripBanners: true,
+            banner: '/**\n*  validate-bootstrap.jquery v <%= pkg.version %>\n*  <%= pkg.homepage %>\n*/\n'
+          },
+          dist: {
+            src: 'validate-bootstrap.jquery.js',
+            dest: 'validate-bootstrap.jquery.js'
           }
         },
         watch: {
             files: 'validate-bootstrap.jquery.js',
-            tasks: ['uglify','usebanner']
+            tasks: ['uglify','concat']
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-banner');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
-    grunt.registerTask('default', ['uglify','usebanner']);
+    grunt.registerTask('default', ['uglify','concat']);
 
 };
