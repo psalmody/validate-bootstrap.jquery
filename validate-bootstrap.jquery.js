@@ -151,14 +151,14 @@
             // if checking checkbox and radio, only select first object in
             // name group (only validate each group once)
             if (settings.checkbox) {
-                $('input:checkbox').each(function() {
+                $self.find('input:checkbox').each(function() {
                     if (names.indexOf($(this).prop('name'))) {
                         names.push($(this).prop('name'));
                     }
                 })
             }
             if (settings.radio) {
-                $('input:radio').each(function() {
+                $self.find('input:radio').each(function() {
                     if (names.indexOf($(this).prop('name'))) {
                         names.push($(this).prop('name'));
                     }
@@ -170,6 +170,7 @@
             })
             // add everything else
             validobjs = validobjs.add($self.find(settings.validateSelecters));
+
             // validate each obj, count errors
             $.each(validobjs,function() {
                 if ($(this).valid() != true) {
