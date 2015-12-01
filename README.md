@@ -4,14 +4,14 @@
 
 jQuery plugin for Bootstrap to validate form
 
-v 0.10.2 (beta)
+v 0.10.3 (beta)
 
 written by Michael A Smith
 May 12 2015
 
 ## Requires:
 * [Bootstrap 3](http://getbootstrap.com/) (tested with 3.3.4)
-* [jQuery](https://jquery.com/) (tested with 1.11.1)
+* [jQuery](https://jquery.com/) (tested with 1.11.1 & 2.1.4)
 
 ## Features
 * Validates `input[type=text,checkbox,radio,email (regex for format),number]`, `select` and `textarea`
