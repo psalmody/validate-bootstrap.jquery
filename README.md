@@ -19,6 +19,20 @@ May 12 2015
 * Defines error messages through data- attributes
 * Uses native Bootstrap 3 styling for displaying errors messages
 
+## Installation
+
+Install with Bower:
+
+```bash
+bower install validate-bootstrap.jquery
+```
+
+Also with NPM:
+
+```bash
+npm install validate-bootstrap.jquery
+```
+
 ## Usage
 
 Initiate the validator with

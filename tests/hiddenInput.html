@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>validate-bootstrap.jquery Basic Test</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+        <h1>Hello, world!</h1>
+    </div>
+    <!-- don't forget novalidate to stop browser form validation -->
+    <form class="form">
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-4 form-group'>
+                <label for="name">First Name:</label>
+                <input id="fname" class="form-control" type="text" required>
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for="name">Last Name:</label>
+                <input id="lname" class="form-control" min="3" required type="text" data-error-msg="Required. Minimum 3 characters.">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for="name">Email:</label>
+                <input id="email" class="form-control" type="email" required data-error-msg="Required. Must be valid e-mail address.">
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-4 form-group'>
+                <label for='somenumber'>Number:</label>
+                <input id='somenumber' class='form-control' type='number' required data-error-msg="Required. Must be a number.">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for='customhandler'>Must follow custom handler:</label>
+                <input id='customhandler' class='form-control customhandler' type='text' required data-error-msg="Required. Must be 'JQUERY'. Case sensitive, but we'll use the <code>validHandler</code> to format <code>.toUpperCase()</code>.">
+            </div>
+            <div class='col-sm-4 form-group'>
+                <label for='notrequired'>Optional:</label>
+                <input id='notrequired' class='form-control' type='text'>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-4 form-group'>
+                <label for='selectrequired'>Required option:</label>
+                <select id='selectrequired' class='form-control' required>
+                    <option selected disabled>Select one...</option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+            <div class='col-sm-4 form-group'>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="option1" value="" required data-error-msg="One checkbox is required, none of the radios are.">
+                        Option one (required)
+                    </label>
+                </div>
+                <div class="checkbox disabled">
+                    <label>
+                        <input type="checkbox" name="option1" value="">
+                        Option two
+                    </label>
+                </div>
+            </div>
+            <div class='col-sm-4 form-group'>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                        Option one (optional)
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                        Option two
+                    </label>
+                </div>
+                <div class="radio disabled">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                        Option three
+                    </label>
+                </div>
+            </div>
+            <div class='col-sm-4 form-group'>
+              <label for="hiddenInput" class="hidden-sm hidden-xs">Hidden input on xs &amp; sm screens:</label>
+              <input type="text" required class="form-control hidden-sm hidden-xs" data-error-msg="Hidden xs and sm screens. Required for lg.">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="../validate-bootstrap.jquery.min.js"></script>
+    <script>
+    $(function() {
+        $('form').validator({
+            validHandlers: {
+                '.customhandler':function(input) {
+                    //may do some formatting before validating
+                    input.val(input.val().toUpperCase());
+                    //return true if valid
+                    return input.val() === 'JQUERY' ? true : false;
+                }
+            }
+        });
+
+        $('form').submit(function(e) {
+            e.preventDefault();
+
+            if ($('form').validator('check') < 1) {
+                alert('valid form!');
+            }
+        })
+    })
+    </script>
+  </body>
+</html>

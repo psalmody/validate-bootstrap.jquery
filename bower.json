@@ -1,0 +1,25 @@
+{
+  "name": "validate-bootstrap.jquery",
+  "description": "Bootstrap form validation jQuery plugin.",
+  "main": "validate-bootstrap.jquery.js",
+  "authors": [
+    "Michael A Smith @psalmody"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jQuery",
+    "plugin",
+    "Bootstrap",
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "moduleType": [],
+  "homepage": "http://psalmody.net/bootstrap-validator.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
