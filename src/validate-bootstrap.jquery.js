@@ -1,7 +1,3 @@
-/**
-*  validate-bootstrap.jquery v 0.10.3
-*  @psalmody https://github.com/psalmody/validate-bootstrap.jquery
-*/
 ;
 (function($) {
 
