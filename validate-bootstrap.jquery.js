@@ -2,7 +2,6 @@
 *  validate-bootstrap.jquery v 0.10.3
 *  @psalmody https://github.com/psalmody/validate-bootstrap.jquery
 */
-;
 (function($) {
 
   $.fn.validator = function(options) {
@@ -71,6 +70,8 @@
           if (!customvalid) {
             return false;
           }
+          //if not visible, validate
+          if (this.not(':visible')) return true;
           // validate by type
           switch (type) {
             // radio / checkbox is valid if at least one is checked
@@ -175,9 +176,7 @@
 
       // validate each obj, count errors
       $.each(validobjs, function() {
-        if ($(this).valid() !== true) {
-          errors++;
-        }
+        if ($(this).valid() !== true) errors++;
       });
 
       // alert if errors
