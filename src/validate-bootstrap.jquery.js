@@ -66,8 +66,8 @@
           if (!customvalid) {
             return false;
           }
-          //if not visible, validate
-          if (this.not(':visible')) return true;
+          //if hidden, skip this field
+          if (this.is(':hidden')) return true;
           // validate by type
           switch (type) {
             // radio / checkbox is valid if at least one is checked

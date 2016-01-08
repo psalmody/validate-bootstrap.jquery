@@ -1,5 +1,5 @@
 /**
-*  validate-bootstrap.jquery v 0.10.4
+*  validate-bootstrap.jquery v 0.10.5
 *  @psalmody https://github.com/psalmody/validate-bootstrap.jquery
 */
 (function($) {
@@ -70,8 +70,8 @@
           if (!customvalid) {
             return false;
           }
-          //if not visible, validate
-          if (this.not(':visible')) return true;
+          //if hidden, skip this field
+          if (this.is(':hidden')) return true;
           // validate by type
           switch (type) {
             // radio / checkbox is valid if at least one is checked
