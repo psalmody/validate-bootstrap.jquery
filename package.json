@@ -2,9 +2,9 @@
   "name": "validate-bootstrap.jquery",
   "version": "0.10.5",
   "description": "Bootstrap form validation jQuery plugin.",
-  "main": "validate-bootstrap.jquery.js",
+  "main": "build/validate-bootstrap.jquery.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "start chrome tests/hiddenInput.html"
   },
   "repository": {
     "type": "git",

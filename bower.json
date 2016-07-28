@@ -1,7 +1,7 @@
 {
   "name": "validate-bootstrap.jquery",
   "description": "Bootstrap form validation jQuery plugin.",
-  "main": "validate-bootstrap.jquery.js",
+  "main": "build/validate-bootstrap.jquery.js",
   "authors": [
     "Michael A Smith @psalmody"
   ],

@@ -9,8 +9,8 @@ module.exports = function(grunt) {
             },
             build: {
                 files: [{
-                    src: 'validate-bootstrap.jquery.js',
-                    dest: 'validate-bootstrap.jquery.min.js'
+                    src: 'src/validate-bootstrap.jquery.js',
+                    dest: 'build/validate-bootstrap.jquery.min.js'
                 }]
             }
         },
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           },
           dist: {
             src: 'src/validate-bootstrap.jquery.js',
-            dest: 'validate-bootstrap.jquery.js'
+            dest: 'build/validate-bootstrap.jquery.js'
           }
         },
         watch: {
