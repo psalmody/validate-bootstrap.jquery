@@ -87,10 +87,16 @@
                     </label>
                 </div>
             </div>
-            <div class='col-sm-4 form-group'>
-              <label for="hiddenInput" class="hidden-sm hidden-xs">Hidden input on xs &amp; sm screens:</label>
-              <input type="text" required class="form-control hidden-sm hidden-xs" data-error-msg="Hidden xs and sm screens. Required for lg.">
-            </div>
+        </div>
+        <div class="row">
+          <div class='col-sm-4 form-group'>
+            <label for="hiddenInput" class="hidden-sm hidden-xs">Hidden input on xs &amp; sm screens:</label>
+            <input type="text" id="hiddenField" required class="form-control hidden-sm hidden-xs" data-error-msg="Hidden xs and sm screens. Required for lg.">
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="toggleHiddenField">&nbsp;</label>
+            <button type="button" class="btn btn-warning btn-block" id="toggleHiddenField">Toggle Hidden Field</button>
+          </div>
         </div>
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
@@ -102,7 +108,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="../validate-bootstrap.jquery.min.js"></script>
+    <script src="../build/validate-bootstrap.jquery.min.js"></script>
     <script>
     $(function() {
         $('form').validator({
@@ -122,6 +128,10 @@
             if ($('form').validator('check') < 1) {
                 alert('valid form!');
             }
+        });
+
+        $('#toggleHiddenField').click(function() {
+          $('#hiddenField').toggle();
         })
     })
     </script>
