@@ -180,9 +180,10 @@
       });
 
       // alert if errors
-      if (errors > 0 && settings.alert) {
-        alert(settings.alert);
-      }
+      if (errors > 0 && settings.alert) alert(settings.alert);
+
+      //cleanup any messages left
+      if (errors == 0) $('.form-group.has-error').removeClass('has-error').find('.help-block.with-errors').remove();
 
       // return error count
       validator.lastcheckerrors = errors;
